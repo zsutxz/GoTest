@@ -1,7 +1,21 @@
-package main  // 代码包声明语句。
-import "fmt" //系统包用来输出的
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
-    // 打印函数调用语句。用于打印输出信息。
-   fmt.Println("hello world 111")
+	http.HandleFunc("/", hello)
+	server := &http.Server{
+		Addr: ":8888",
+	}
+	fmt.Println("server startup111...")
+	if err := server.ListenAndServe(); err != nil {
+		fmt.Printf("server startup failed, err:%v\n", err)
+	}
+}
+
+func hello(w http.ResponseWriter, _ *http.Request) {
+	w.Write([]byte("hello liwenzhou12111.com!"))
 }

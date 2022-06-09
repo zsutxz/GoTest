@@ -30,6 +30,7 @@ COPY ./wait-for.sh /
 COPY ./templates /templates
 COPY ./static /static
 COPY ./conf /conf
+COPY ./layuimini /layuimini
 
 
 # 从builder镜像中把/dist/app 拷贝到当前目录

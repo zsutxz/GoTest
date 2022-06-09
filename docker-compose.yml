@@ -4,7 +4,7 @@ services:
   mysql8019:
     image: "mysql:8.0.19"
     ports:
-      - "33060:3306"
+      - "33066:3306"
     command: "--default-authentication-plugin=mysql_native_password --init-file /data/application/init.sql"
     environment:
       MYSQL_ROOT_PASSWORD: "root1234"
@@ -18,4 +18,4 @@ services:
     depends_on:
       - mysql8019
     ports:
-      - "8888:8888"
+      - "8080:8888"

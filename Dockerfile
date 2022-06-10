@@ -26,22 +26,22 @@ RUN go build -o bubble .
 ###################
 FROM debian:stretch-slim
 
-COPY ./wait-for.sh /
-COPY ./templates /templates
-COPY ./static /static
-COPY ./conf /conf
-COPY ./layuimini /layuimini
+COPY ./wait-for.sh /work/gotest/
+COPY ./conf /work/gotest/conf
+COPY ./templates /work/gotest/templates
+COPY ./static /work/gotest/static
+COPY ./layuimini /work/gotest/layuimini
 
 
 # 从builder镜像中把/dist/app 拷贝到当前目录
-COPY --from=builder /build/bubble /
+COPY --from=builder /build/bubble /work/gotest/
 
 RUN set -eux; \
     apt-get update; \
     apt-get install -y \
         --no-install-recommends \
         netcat; \
-        chmod 755 wait-for.sh
+        chmod 755 /work/gotest/wait-for.sh
 
 # 需要运行的命令
 # ENTRYPOINT ["/bubble", "conf/config.ini"]

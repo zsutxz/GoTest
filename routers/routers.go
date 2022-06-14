@@ -3,14 +3,9 @@ package routers
 import (
 	"bubble/controller"
 	"bubble/setting"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
-
-func IndexHandler(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", nil)
-}
 
 func SetupRouter() *gin.Engine {
 	if setting.Conf.Release {
@@ -22,7 +17,7 @@ func SetupRouter() *gin.Engine {
 	r.Static("/layui", "./work/gotest/layuimini")
 
 	// 告诉gin框架去哪里找模板文件
-	r.LoadHTMLGlob("/work/gotest/templates/*")
+	r.LoadHTMLGlob("./work/gotest/templates/*")
 	r.GET("/index", controller.IndexHandler)
 	// v1
 	v1Group := r.Group("v1")

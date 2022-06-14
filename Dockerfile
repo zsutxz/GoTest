@@ -32,7 +32,6 @@ COPY ./templates /work/gotest/templates
 COPY ./static /work/gotest/static
 COPY ./layuimini /work/gotest/layuimini
 
-
 # 从builder镜像中把/dist/app 拷贝到当前目录
 COPY --from=builder /build/bubble /work/gotest/
 

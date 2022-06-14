@@ -1,38 +1,70 @@
 package main
 
 import (
-	"bubble/dao"
-	"bubble/models"
-	"bubble/routers"
-	"bubble/setting"
+	"context"
 	"fmt"
-	"os"
+	conf "hrms/common/config"
+	db "hrms/common/db"
+	"hrms/router"
+	"log"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/qiniu/qmgo"
 )
 
-func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage：./bubble conf/config.ini")
-		return
-	}
-	// 加载配置文件
-	if err := setting.Init(os.Args[1]); err != nil {
-		fmt.Printf("load config from file failed, err:%v\n", err)
-		return
-	}
-	// 创建数据库
-	// sql: CREATE DATABASE bubble;
-	// 连接数据库
-	err := dao.InitMySQL(setting.Conf.MySQLConfig)
+func InitMongo() error {
+	mongo := conf.HrmsConf.Mongo
+	var err error
+	conf.MongoClient, err = qmgo.NewClient(context.Background(), &qmgo.Config{
+		Uri:      fmt.Sprintf("mongodb://%v:%v", mongo.IP, mongo.Port),
+		Database: mongo.Dataset,
+	})
 	if err != nil {
-		fmt.Printf("init mysql failed, err:%v\n", err)
-		return
+		return err
 	}
-	defer dao.Close() // 程序退出关闭数据库连接
-	// 模型绑定
-	dao.DB.AutoMigrate(&models.Todo{})
-	// 注册路由
-	r := routers.SetupRouter()
-	if err := r.Run(fmt.Sprintf(":%d", setting.Conf.Port)); err != nil {
-		fmt.Printf("server startup failed, err:%v\n", err)
+	return nil
+}
+
+func htmlInit(server *gin.Engine) {
+	// 静态资源
+	server.StaticFS("/static", http.Dir("./static"))
+	server.StaticFS("/views", http.Dir("./views"))
+	// HTML模板加载
+	server.LoadHTMLGlob("views/*")
+	// 404页面
+	server.NoRoute(func(c *gin.Context) {
+		c.HTML(404, "404.html", nil)
+	})
+}
+
+func InitGin() error {
+	server := gin.Default()
+	// 静态资源及模板配置
+	htmlInit(server)
+	// 初始化路由
+	router.Init(server)
+	err := server.Run(fmt.Sprintf(":%v", conf.HrmsConf.Gin.Port))
+	if err != nil {
+		log.Printf("[InitGin] err = %v", err)
 	}
+	log.Printf("[InitGin] success")
+	return err
+}
+
+func main() {
+	if err := conf.InitConfig(); err != nil {
+		panic(err)
+	}
+	if err := db.InitGorm(); err != nil {
+		panic(err)
+	}
+	if err := InitGin(); err != nil {
+		panic(err)
+	}
+	//mongo要放到gin初始化后。
+	if err := InitMongo(); err != nil {
+		panic(err)
+	}
+
 }

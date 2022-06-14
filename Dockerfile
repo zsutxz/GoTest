@@ -27,10 +27,9 @@ RUN go build -o bubble .
 FROM debian:stretch-slim
 
 COPY ./wait-for.sh /work/gotest/
-COPY ./conf /work/gotest/conf
-COPY ./templates /work/gotest/templates
+COPY ./config /work/gotest/config
 COPY ./static /work/gotest/static
-COPY ./layuimini /work/gotest/layuimini
+COPY ./view /work/gotest/view
 
 # 从builder镜像中把/dist/app 拷贝到当前目录
 COPY --from=builder /build/bubble /work/gotest/

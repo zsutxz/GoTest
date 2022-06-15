@@ -48,3 +48,4 @@ bubble.exe conf/config.ini
 
 启动之后，使用浏览器打开`http://127.0.0.1:9000/`即可。
 ![example.png](example.png)
+

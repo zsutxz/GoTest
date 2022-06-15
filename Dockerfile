@@ -29,7 +29,7 @@ FROM debian:stretch-slim
 COPY ./wait-for.sh /work/gotest/
 COPY ./config /work/gotest/config
 COPY ./static /work/gotest/static
-COPY ./view /work/gotest/view
+COPY ./views /work/gotest/views
 
 # 从builder镜像中把/dist/app 拷贝到当前目录
 COPY --from=builder /build/bubble /work/gotest/

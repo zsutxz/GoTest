@@ -27,22 +27,22 @@ RUN go build -o bubble .
 FROM debian:stretch-slim
 
 #设置工作目录
-WORKDIR $GOPATH /work/gotest
+WORKDIR /work/gotest
 
-COPY ./wait-for.sh /work/gotest/
-COPY ./config /work/gotest/config
-COPY ./static /work/gotest/static
-COPY ./views /work/gotest/views
+COPY ./wait-for.sh .
+COPY ./config ./config
+COPY ./static ./static
+COPY ./views ./views
 
 # 从builder镜像中把/dist/app 拷贝到当前目录
-COPY --from=builder /build/bubble /work/gotest/
+COPY --from=builder /build/bubble .
 
 RUN set -eux; \
     apt-get update; \
     apt-get install -y \
         --no-install-recommends \
         netcat; \
-        chmod 755 /work/gotest/wait-for.sh
+        chmod 755 ./wait-for.sh
 
 # 需要运行的命令
 # ENTRYPOINT ["/bubble", "conf/config.ini"]

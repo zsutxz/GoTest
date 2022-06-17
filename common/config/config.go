@@ -67,13 +67,13 @@ type Config struct {
 func InitConfig() error {
 	config := &Config{}
 	vip := viper.New()
-	vip.AddConfigPath("/work/gotest/config")
+	vip.AddConfigPath("./config")
 	vip.SetConfigType("yaml")
 	// 环境判断
 	env := os.Getenv("HRMS_ENV")
 	if env == "" || env == "dev" {
 		// 开发环境
-		vip.SetConfigName("config")
+		vip.SetConfigName("config-dev")
 	}
 	if env == "prod" {
 		// 生产环境

@@ -14,7 +14,7 @@ services:
       - ./init.sql:/data/application/init.sql
   bubble_app:
     build: .
-    command: sh -c "./work/gotest/wait-for.sh mysql8019:3306 -- ./work/gotest/bubble ./work/gotest/conf/config.ini"
+    command: sh -c "/work/gotest/wait-for.sh mysql8019:3306 -- /work/gotest/bubble"
     depends_on:
       - mysql8019
     ports:

@@ -26,6 +26,9 @@ RUN go build -o bubble .
 ###################
 FROM debian:stretch-slim
 
+#设置工作目录
+WORKDIR $GOPATH /work/gotest
+
 COPY ./wait-for.sh /work/gotest/
 COPY ./config /work/gotest/config
 COPY ./static /work/gotest/static

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	conf "hrms/common/config"
-	db "hrms/common/db"
+	"hrms/common/db"
 	"hrms/router"
 	"log"
 	"net/http"
@@ -28,10 +28,10 @@ func InitMongo() error {
 
 func htmlInit(server *gin.Engine) {
 	// 静态资源
-	server.StaticFS("/static", http.Dir("./static"))
-	server.StaticFS("/views", http.Dir("./views"))
+	server.StaticFS("/static", http.Dir("/work/gotest/static"))
+	// server.StaticFS("/views", http.Dir("/work/gotest/views"))
 	// HTML模板加载
-	server.LoadHTMLGlob("views/*")
+	server.LoadHTMLGlob("/work/gotest/views/*")
 	// 404页面
 	server.NoRoute(func(c *gin.Context) {
 		c.HTML(404, "404.html", nil)

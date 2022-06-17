@@ -73,7 +73,7 @@ func InitConfig() error {
 	env := os.Getenv("HRMS_ENV")
 	if env == "" || env == "dev" {
 		// 开发环境
-		vip.SetConfigName("config-dev")
+		vip.SetConfigName("config")
 	}
 	if env == "prod" {
 		// 生产环境

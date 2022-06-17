@@ -2,8 +2,8 @@ gin:
   port: 8888
 db:
   user: root
-  password: root1234
-  host: mysql8019
+  password: 123456
+  host: 127.0.0.1
   port: 3306
   dbName: hrms_C001
 mongo:

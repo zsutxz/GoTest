@@ -29,6 +29,8 @@ FROM debian:stretch-slim
 #设置工作目录
 WORKDIR /work/gotest
 
+ENV HRMS_ENV="prod"
+
 COPY ./wait-for.sh .
 COPY ./config ./config
 COPY ./static ./static

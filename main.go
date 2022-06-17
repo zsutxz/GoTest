@@ -28,10 +28,9 @@ func InitMongo() error {
 
 func htmlInit(server *gin.Engine) {
 	// 静态资源
-	server.StaticFS("/static", http.Dir("/work/gotest/static"))
-	// server.StaticFS("/views", http.Dir("/work/gotest/views"))
+	server.StaticFS("/static", http.Dir("./static"))
 	// HTML模板加载
-	server.LoadHTMLGlob("/work/gotest/views/*")
+	server.LoadHTMLGlob("./views/*")
 	// 404页面
 	server.NoRoute(func(c *gin.Context) {
 		c.HTML(404, "404.html", nil)

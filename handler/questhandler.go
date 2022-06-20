@@ -3,23 +3,41 @@ package handler
 import (
 	"hrms/model"
 	"hrms/service"
-	"net/http"
+	"log"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
-//提交问题界面
 func AddQuestion(c *gin.Context) {
-	//解析模板文件
-	c.HTML(http.StatusOK, "addquestion.tpml", gin.H{
-		"title": "HTML 模板渲染样例",
-		"body":  "这里是内容",
+	// 参数绑定
+	var dto model.Question
+	if err := c.ShouldBindJSON(&dto); err != nil {
+		log.Printf("[AddQuestion] err = %v", err)
+		c.JSON(200, gin.H{
+			"status": 5001,
+			"result": err.Error(),
+		})
+		return
+	}
+	log.Printf("AddQuestion,dto=%v", dto)
+	// 业务处理
+	err := service.QuestService.Add(c, dto)
+	if err != nil {
+		log.Printf("[CreateExample] err = %v", err)
+		c.JSON(200, gin.H{
+			"status": 5002,
+			"result": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"status": 2000,
 	})
 }
 
-// 表单提交
-func PostQuest(c *gin.Context) {
+// 提交题目
+func AddQuestion11(c *gin.Context) {
 	var form model.Question
 
 	form.Quest = c.PostForm("question")
@@ -41,7 +59,8 @@ func PostQuest(c *gin.Context) {
 		num = 100
 	}
 	form.Dif = int8(num)
+	log.Printf("form,v=%v", form)
 
-	service.QuestService.Add(form)
+	// service.QuestService.Add(form)
 
 }

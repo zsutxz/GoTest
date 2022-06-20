@@ -115,4 +115,7 @@ func Init(server *gin.Engine) {
 	exampleScoreGroup.POST("/create", handler.CreateExampleScore)
 	exampleScoreGroup.GET("/query_by_name/:name", handler.GetExampleHistoryByName)
 	exampleScoreGroup.GET("/query_by_staff_id/:staff_id", handler.GetExampleHistoryByStafId)
+	// 题目管理相关
+	questionGroup := server.Group("/question")
+	questionGroup.POST("/create", handler.AddQuestion)
 }

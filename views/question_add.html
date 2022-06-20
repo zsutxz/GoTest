@@ -19,44 +19,97 @@
     <div class="layui-form-item">
         <label class="layui-form-label">题目</label>
         <div class="layui-input-block">
-            <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入题目" value="" class="layui-input"></textarea>
+            <textarea style="height: 100px" type="text" name="quest" lay-verify="required" placeholder="请输入题目" value="" class="layui-input"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">选项A</label>
         <div class="layui-input-block">
-            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+            <textarea style="height: 30px" type="text" name="choicea" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">选项B</label>
         <div class="layui-input-block">
-            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+            <textarea style="height: 30px" type="text" name="choiceb" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">选项C</label>
         <div class="layui-input-block">
-            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+            <textarea style="height: 30px" type="text" name="choicec" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">选项D</label>
         <div class="layui-input-block">
-            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+            <textarea style="height: 30px" type="text" name="choiced" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">答案</label>
         <div class="layui-input-block">
-            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入答案" value="" class="layui-input"></textarea>
+            <select id="quest_dif" name="answer" lay-verify="required">
+                <option value="0">A</option>
+                <option value="1">B</option>
+                <option value="2">C</option>
+                <option value="3">D</option>
+            </select>
         </div>
     </div>
-
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类</label>
+        <div class="layui-input-block">
+            <select  id="quest_kind" name="kind" lay-verify="required">
+                <option value="1">基础知识</option>
+                <option value="2">操作系统</option>
+                <option value="3">数据库</option>
+                <option value="4">硬件基础</option>
+                <option value="5">数据结构</option>
+                <option value="6">算法</option>
+                <option value="7">C++语言</option>
+                <option value="8">网络</option>
+                <option value="8">互联网应用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">题目难度</label>
+        <div class="layui-input-block">
+            <select id="quest_dif" name="dif" lay-verify="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分数</label>
+        <div class="layui-input-block">
+            <select id="quest_score" name="score" lay-verify="required">
+                <option value="1">1</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">答案说明</label>
         <div class="layui-input-block">
             <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">状态</label>
+        <div class="layui-input-block">
+            <select id="quest_score" name="quest_score" lay-verify="required">
+                <option value="1">开启</option>
+                <option value="0">关闭</option>
+            </select>
         </div>
     </div>
 
@@ -67,5 +120,67 @@
     </div>
 </div>
 <script src="/static/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['upload','form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            upload = layui.upload,
+            $ = layui.$;
+
+        upload.render({
+            elem: '#example_excel' //绑定元素
+            ,url: '/example/parse_example_content' //上传接口
+            ,accept: 'file',
+            exts:'xlsx',
+            field:'example_excel',
+            done: function(resp, index, upload){
+                //上传完毕回调
+                if (resp.status == 2000) {
+                    layer.msg("上传成功")
+                    $("#is").val("已上传试题")
+                    $("#content").val(resp.msg)
+                } else {
+                    layer.msg(resp.msg)
+                }
+            }
+            ,error: function(){
+                //请求异常回调
+                layer.msg("只可以上传xlsx格式的表格")
+            }
+        });
+
+        //监听提交
+        form.on('submit(saveBtn)', function (req) {
+            console.log("error resp:" + JSON.stringify(req.field))
+            $.ajax({
+                type: "POST",
+                url: "/question/create",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(req.field),
+                dataType: "json",
+                async: false,
+                success:function (data) {
+                    var resp = JSON.parse(JSON.stringify(data));
+                    if (resp.status == 2000) {
+                        layer.alert("添加成功", function (){
+                            // 关闭
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                        })
+                    } else {
+                        layer.alert("添加失败")
+                    }
+                },
+                error:function (data) {
+                    console.log("error resp:" + data)
+                    layer.msg("系统异常,添加失败");
+                }
+            });
+
+            return false;
+        });
+
+    });
+</script>
 </body>
 </html>

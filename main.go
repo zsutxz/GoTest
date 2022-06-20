@@ -16,7 +16,7 @@ import (
 func htmlInit(server *gin.Engine) {
 	// 静态资源
 	server.StaticFS("/static", http.Dir("./static"))
-	// server.StaticFS("/views", http.Dir("./views"))
+	server.StaticFS("/views", http.Dir("./views"))
 	// HTML模板加载
 	server.LoadHTMLGlob("./views/*")
 	// 404页面

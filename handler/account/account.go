@@ -21,7 +21,6 @@ func Ping(c *gin.Context) {
 }
 
 func Index(c *gin.Context) {
-	fmt.Printf("Index\n")
 	// 判断是否存在cookie
 	cookie, err := c.Cookie("user_cookie")
 	if err != nil || cookie == "" {

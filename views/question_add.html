@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/static/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目</label>
+        <div class="layui-input-block">
+            <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入题目" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">选项A</label>
+        <div class="layui-input-block">
+            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">选项B</label>
+        <div class="layui-input-block">
+            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">选项C</label>
+        <div class="layui-input-block">
+            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">选项D</label>
+        <div class="layui-input-block">
+            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">答案</label>
+        <div class="layui-input-block">
+            <textarea style="height: 30px" type="text" name="describe" lay-verify="required" placeholder="请输入答案" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">答案说明</label>
+        <div class="layui-input-block">
+            <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">添 加</button>
+        </div>
+    </div>
+</div>
+<script src="/static/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+</body>
+</html>

@@ -66,6 +66,26 @@
               "target": "_self"
             }
           ]
+        },
+        {
+          "title": "题库管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "添加题目",
+              "href": "views/question_add.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "修改题目",
+              "href": "views/question_edit.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
         }
       ]
     }

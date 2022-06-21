@@ -3,10 +3,10 @@
 CREATE TABLE `mc_question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(1024) DEFAULT NULL,
-  `choicea` varchar(256) DEFAULT NULL,
-  `choiceb` varchar(256) DEFAULT NULL,
-  `choicec` varchar(256) DEFAULT NULL,
-  `choiced` varchar(256) DEFAULT NULL,
+  `choice_a` varchar(256) DEFAULT NULL,
+  `choice_b` varchar(256) DEFAULT NULL,
+  `choice_c` varchar(256) DEFAULT NULL,
+  `choice_d` varchar(256) DEFAULT NULL,
   `answer` tinyint(2) DEFAULT '0',
   `score` tinyint(2) DEFAULT '0',
   `kind` tinyint(2) DEFAULT '0' COMMENT '类型',
@@ -16,6 +16,7 @@ CREATE TABLE `mc_question` (
   `owner` int(11) DEFAULT '0'COMMENT '出题人',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -15,12 +15,11 @@ type questService struct {
 var QuestService = new(questService)
 
 // Add 添加
-func (mcquestServ *questService) Add(c *gin.Context, params model.Question) (err error) {
-	var quest = model.Question{Quest: params.Quest, ChoiceA: params.ChoiceA, ChoiceB: params.ChoiceB, ChoiceC: params.ChoiceC,
-		ChoiceD: params.ChoiceD, Answer: params.Answer, Score: 2, Dif: params.Dif, Stat: 1, Owner: "coldeye"}
-	// err = global.App.DB.Create(&quest).Error
+func (mcquestServ *questService) Add(c *gin.Context, params model.Mc_Question) (err error) {
+	var question = model.Mc_Question{Question: params.Question, ChoiceA: params.ChoiceA, ChoiceB: params.ChoiceB, ChoiceC: params.ChoiceC,
+		ChoiceD: params.ChoiceD, Answer: params.Answer, Score: params.Score, Dif: params.Dif, Stat: params.Stat, Owner: 10001}
 
-	if err := conf.HrmsDB(c).Create(&quest).Error; err != nil {
+	if err := conf.HrmsDB(c).Create(&question).Error; err != nil {
 		log.Printf("questService Add err = %v", err)
 		return err
 	}
@@ -29,7 +28,7 @@ func (mcquestServ *questService) Add(c *gin.Context, params model.Question) (err
 }
 
 // Get 获取题目信息
-func (mcquestServ *questService) Get(id uint) (err error, quest model.Question) {
+func (mcquestServ *questService) Get(id uint) (err error, quest model.Mc_Question) {
 
 	// err = global.App.DB.First(&quest, id).Error
 	if err != nil {

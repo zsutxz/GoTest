@@ -162,17 +162,12 @@
                 success:function (data) {
                     var resp = JSON.parse(JSON.stringify(data));
                     if (resp.status == 2000) {
-                        layer.alert("添加成功", function (){
-                            // 关闭
-                            var iframeIndex = parent.layer.getFrameIndex(window.name);
-                            parent.layer.close(iframeIndex);
-                        })
+                        layer.alert("添加成功")
                     } else {
                         layer.alert("添加失败")
                     }
                 },
                 error:function (data) {
-                    console.log("error resp:" + data)
                     layer.msg("系统异常,添加失败");
                 }
             });

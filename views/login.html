@@ -37,22 +37,21 @@
         <div class="layui-form login-form">
             <form class="layui-form">
                 <div class="layui-form-item logo-title">
-                    <h3 style="color:dodgerblue;font-weight:bold">-连锁经营企业-</h3>
-                    <h1>人力资源管理系统</h1>
+                    <h1>信息技术题库管理系统</h1>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username"></label>
-                    <input type="text" name="staff_id" lay-verify="required" placeholder="员工工号" autocomplete="off" class="layui-input" value="3117000001">
+                    <input type="text" name="staff_id" lay-verify="required" placeholder="员工工号" autocomplete="off" class="layui-input" value="root">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" ></label>
-                    <input type="password" name="user_password" lay-verify="required" placeholder="登陆密码" autocomplete="off" class="layui-input" value="admin1">
+                    <input type="password" name="user_password" lay-verify="required" placeholder="登陆密码" autocomplete="off" class="layui-input" value="root">
                 </div>
-                <div class="layui-form-item">
+                <!-- <div class="layui-form-item">
                     <select name="branch_id" id="branch_select" lay-verify="required" lay-search>
                         <option value="-1">请选择分公司</option>
                     </select>
-                </div>
+                </div> -->
 <!--                <div class="layui-form-item">-->
 <!--                    <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">-->
 <!--                </div>-->
@@ -68,19 +67,19 @@
 <script src="/static/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script>
 
-    $(function() {
-        $ = layui.$
-        $.ajax({
-            type: "GET",
-            url: "/company/query",
-            success:function (data) {
-                var resp = JSON.parse(JSON.stringify(data));
-                $.each(resp.msg, function (index, item) {
-                    $('#branch_select').append(new Option(item.name, item.branch_id));// 下拉菜单里添加元素
-                });
-                layui.form.render("select");
-            }});
-    })
+    // $(function() {
+    //     $ = layui.$
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "/company/query",
+    //         success:function (data) {
+    //             var resp = JSON.parse(JSON.stringify(data));
+    //             $.each(resp.msg, function (index, item) {
+    //                 $('#branch_select').append(new Option(item.name, item.branch_id));// 下拉菜单里添加元素
+    //             });
+    //             layui.form.render("select");
+    //         }});
+    // })
 
     layui.use(['form'], function () {
         var form = layui.form,
@@ -112,10 +111,11 @@
                 layer.msg('请选择分公司');
                 return false;
             }
+
             var loginData = {
                 staff_id:data.staff_id,
                 user_password:data.user_password,
-                branch_id:data.branch_id
+                branch_id:"C001"
             }
             // alert(loginData)
             // Json Post 登陆校验

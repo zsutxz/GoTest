@@ -118,4 +118,5 @@ func Init(server *gin.Engine) {
 	// 题目管理相关
 	questionGroup := server.Group("/question")
 	questionGroup.POST("/create", handler.AddQuestion)
+	questionGroup.GET("/search/:id", handler.SearchQuestion)
 }

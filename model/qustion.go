@@ -3,7 +3,7 @@ package model
 import "strconv"
 
 type Mc_Question struct {
-	ID
+	ID       int64  `json:"id" gorm:"column:id"`
 	Question string `json:"quest" gorm:"size:512;not null;comment:问题"`
 	ChoiceA  string `json:"choicea" gorm:"size:256;not null;index;comment:选项"`
 	ChoiceB  string `json:"choiceb" gorm:"size:256;not null;index;comment:"`
@@ -21,5 +21,5 @@ type Mc_Question struct {
 }
 
 func (question Mc_Question) GetUid() string {
-	return strconv.Itoa(int(question.ID.ID))
+	return strconv.Itoa(int(question.ID))
 }

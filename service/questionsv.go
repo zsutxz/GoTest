@@ -36,3 +36,11 @@ func (mcquestServ *questService) Get(id uint) (err error, quest model.Mc_Questio
 	}
 	return nil, quest
 }
+
+func (mcquestServ *questService) DelById(c *gin.Context, id int) error {
+	if err := conf.HrmsDB(c).Where("id = ?", id).Delete(&model.Mc_Question{}).Error; err != nil {
+		log.Printf("DelById err = %v", err)
+		return err
+	}
+	return nil
+}

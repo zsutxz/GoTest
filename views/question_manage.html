@@ -77,7 +77,7 @@
                 }],
                 cols: [[
                     // {type: "checkbox", width: 50},
-                    {field: 'ID',width: 60, title: '序号', sort: true, type:'numbers'},
+                    {field: 'id',width: 60, title: '序号', sort: true, type:'numbers'},
                     {field: 'quest', width: 280, title: '题目'},
                     {field: 'choicea', width: 180, title: '选线A'},
                     {field: 'choiceb', width: 180, title: '选线B'},
@@ -111,65 +111,12 @@
                 }
             });
 
-            // 监听搜索操作
-            form.on('submit(data-search-btn)', function (data) {
-                layer.msg("搜索成功");
-                var id = data.field.question_id;
-                var reqUrl = "/question/query/" + id
-                if (typeof id == "undefined" || id == null || id == "") {
-                    reqUrl = "/question/query/all"
-                }
-                //执行搜索重载
-                table.reload('currentTableId', {
-                    url: reqUrl,
-                    page: {
-                        curr: 1
-                    }
-                }, 'data');
-                return false;
-            });
-
-            /**
-             * toolbar监听事件
-             */
-            table.on('toolbar(currentTableFilter)', function (obj) {
-                if (obj.event === 'add') {  // 监听添加操作
-                    var index = layer.open({
-                        title: '添加员工',
-                        type: 2,
-                        shade: 0.2,
-                        maxmin:true,
-                        shadeClose: true,
-                        area: ['80%', '80%'],
-                        content: '/views/staff_add.html',
-                        end: function(){
-                            //执行搜索重载
-                            table.reload('currentTableId', {
-                                page: {
-                                    curr: 1
-                                }
-                            }, 'data');
-                        }
-                    });
-                    $(window).on("resize", function () {
-                        layer.full(index);
-                    });
-                }
-            });
-
-            // 监听表格复选框选择
-            // table.on('checkbox(currentTableFilter)', function (obj) {
-            //     console.log(obj)
-            // });
-
             table.on('tool(currentTableFilter)', function (obj) {
-                var staffId = obj.data.staff_id;
-                // var preDepId = obj.data.pre_dep_id;
+
                 // var depName = obj.data.dep_name;
-                // var needEditDepInfo = {"dep_id":depId, "pre_dep_id": preDepId,
-                // "dep_name":depName}
+                // var needEditDepInfo = {"dep_id":depId, "pre_dep_id": preDepId,"dep_name":depName}
                 if (obj.event === 'edit') {
-                    // 本地缓存需要编辑的员工信息
+                    // 本地缓存需要编辑的信息
                     localStorage.setItem("staff_edit_info", JSON.stringify(obj.data))
                     // alert("待编辑：" + localStorage.getItem("staff_edit_info"))
                     var index = layer.open({
@@ -196,10 +143,9 @@
                 } else if (obj.event === 'delete') {
                     layer.confirm('确认删除吗？', function () {
                         // alert(JSON.stringify(obj.data))
-                        // alert(depId)
                         $.ajax({
                             type: "DELETE",
-                            url: "/question/del/" + staffId,
+                            url: "/question/delete/" + obj.data.id,
                             async: false,
                             success:function (data) {
                                 var resp = JSON.parse(JSON.stringify(data));

@@ -6,6 +6,7 @@ import (
 	"hrms/service"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -81,5 +82,42 @@ func SearchQuestion(c *gin.Context) {
 		"total":  total,
 		"msg":    qustions,
 	})
+}
 
+func EditQuestion(c *gin.Context) {
+	// 参数绑定
+	var dto model.Mc_Question
+	if err := c.ShouldBindJSON(&dto); err != nil {
+		log.Printf("[EditQuestion] err = %v", err)
+		c.JSON(200, gin.H{
+			"status": 5001,
+			"result": err.Error(),
+		})
+		return
+	}
+
+	conf.HrmsDB(c).Model(&model.Mc_Question{}).Where("id = ?", strconv.Itoa(int(dto.ID))).
+		Updates(&dto)
+	c.JSON(200, gin.H{
+		"status": 2000,
+	})
+}
+
+func DelQuestion(c *gin.Context) {
+	quest_id := c.Param("id")
+	log.Printf("DelQuestion,quest_id=%v", quest_id)
+	// 业务处理
+	num, err := strconv.Atoi(quest_id)
+	service.QuestService.DelById(c, num)
+	if err != nil {
+		log.Printf("[DelExample] err = %v", err)
+		c.JSON(200, gin.H{
+			"status": 5002,
+			"result": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"status": 2000,
+	})
 }

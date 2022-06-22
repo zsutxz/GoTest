@@ -119,4 +119,6 @@ func Init(server *gin.Engine) {
 	questionGroup := server.Group("/question")
 	questionGroup.POST("/create", handler.AddQuestion)
 	questionGroup.GET("/search/:id", handler.SearchQuestion)
+	questionGroup.POST("/edit", handler.EditQuestion)
+	questionGroup.DELETE("/delete/:id", handler.DelQuestion)
 }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>题目查询</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/static/lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="/static/css/public.css" media="all">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>题目查询</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="/static/lib/layui-v2.5.5/css/layui.css" media="all">
+        <link rel="stylesheet" href="/static/css/public.css" media="all">
+    </head>
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
@@ -60,6 +60,7 @@
 <script src="/static/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 
 <script>
+    {{ if .query }}
         layui.use(['form', 'table'], function () {
             var $ = layui.jquery,
                 form = layui.form,
@@ -76,13 +77,12 @@
                 }],
                 cols: [[
                     // {type: "checkbox", width: 50},
-                    {field: 'ID', width: 60, title: '序号', sort: true, hide: true},
-                    {width: 60, title: '序号', sort: true, type:'numbers'},
-                    {field: 'quest', width: 200, title: '题目'},
-                    {field: 'choicea', width: 120, title: '选线A'},
-                    {field: 'choiceb', width: 120, title: '选线B'},
-                    {field: 'choicec', width: 120, title: '选线C'},
-                    {field: 'choiced', width: 120, title: '选线D'},
+                    {field: 'ID',width: 60, title: '序号', sort: true, type:'numbers'},
+                    {field: 'quest', width: 280, title: '题目'},
+                    {field: 'choicea', width: 180, title: '选线A'},
+                    {field: 'choiceb', width: 180, title: '选线B'},
+                    {field: 'choicec', width: 180, title: '选线C'},
+                    {field: 'choiced', width: 180, title: '选线D'},
                     {field: 'answer', width: 60, title: '答案'},
                     {field: 'score', width: 60, title: '分数'},
                     {field: 'kind', width: 60, title: '种类'},
@@ -90,6 +90,7 @@
                     {field: 'dif', width: 60, title: '难度'},
                     {field: 'stat', width: 60, title: '开启'},
                     {field: 'created_at', width: 180, title: '添加时间'},
+                    {title: '操作', minWidth: 200, toolbar: '#currentTableBar', align: "center", fixed: 'right'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
                 limit: 10,
@@ -114,9 +115,9 @@
             form.on('submit(data-search-btn)', function (data) {
                 layer.msg("搜索成功");
                 var staffName = data.field.question_id;
-                var reqUrl = "/staff/query_by_name/" + staffName
+                var reqUrl = "/question/query/all"//"/question/query_by_name/" + staffName
                 if (typeof staffName == "undefined" || staffName == null || staffName == "") {
-                    reqUrl = "/staff/query/all"
+                    reqUrl = "/question/query/all"
                 }
                 //执行搜索重载
                 table.reload('currentTableId', {
@@ -156,7 +157,7 @@
                 }
             });
 
-            //监听表格复选框选择
+            // 监听表格复选框选择
             // table.on('checkbox(currentTableFilter)', function (obj) {
             //     console.log(obj)
             // });
@@ -250,8 +251,9 @@
             });
 
         });
-
+    {{ else }}
+    alert("你没有数据查询权限")
+    {{ end }}
 </script>
-
 </body>
 </html>

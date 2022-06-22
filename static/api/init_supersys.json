@@ -81,7 +81,7 @@
             },
             {
               "title": "查询题目",
-              "href": "views/question_manage.html",
+              "href": "authority_render/question_manage",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },

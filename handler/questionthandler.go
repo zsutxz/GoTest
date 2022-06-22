@@ -39,14 +39,22 @@ func AddQuestion(c *gin.Context) {
 func SearchQuestion(c *gin.Context) {
 	var total int64 = 1
 
+	// 分页
+	start, limit := service.AcceptPage(c)
 	code := 2000
 	quest_id := c.Param("id")
-	log.Printf("SearchQuestion,id=%v", quest_id)
 
 	var qustions []model.Mc_Question
 	if quest_id == "all" {
 		// 查询全部
 		conf.HrmsDB(c).Find(&qustions)
+
+		// 查询全部
+		if start == -1 && start == -1 {
+			conf.HrmsDB(c).Find(&qustions)
+		} else {
+			conf.HrmsDB(c).Offset(start).Limit(limit).Find(&qustions)
+		}
 
 		if len(qustions) == 0 {
 			// 不存在
@@ -61,4 +69,17 @@ func SearchQuestion(c *gin.Context) {
 		})
 		return
 	}
+
+	conf.HrmsDB(c).Where("id = ? ", quest_id).Find(&qustions)
+	if len(qustions) == 0 {
+		// 不存在
+		code = 2001
+	}
+	total = int64(len(qustions))
+	c.JSON(http.StatusOK, gin.H{
+		"status": code,
+		"total":  total,
+		"msg":    qustions,
+	})
+
 }

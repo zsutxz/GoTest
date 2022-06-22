@@ -17,7 +17,7 @@ var QuestService = new(questService)
 // Add 添加
 func (mcquestServ *questService) Add(c *gin.Context, params model.Mc_Question) (err error) {
 	var question = model.Mc_Question{Question: params.Question, ChoiceA: params.ChoiceA, ChoiceB: params.ChoiceB, ChoiceC: params.ChoiceC,
-		ChoiceD: params.ChoiceD, Answer: params.Answer, Score: params.Score, Dif: params.Dif, Stat: params.Stat, Owner: 10001}
+		ChoiceD: params.ChoiceD, Answer: params.Answer, Kind: params.Kind, Score: params.Score, Dif: params.Dif, Stat: params.Stat, Owner: 10001}
 
 	if err := conf.HrmsDB(c).Create(&question).Error; err != nil {
 		log.Printf("questService Add err = %v", err)

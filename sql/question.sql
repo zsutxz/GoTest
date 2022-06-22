@@ -13,6 +13,7 @@ CREATE TABLE `mc_question` (
   `grade` tinyint(2) DEFAULT '0' COMMENT '等级',
   `dif` tinyint(2) DEFAULT '0' COMMENT '难度',
   `stat` tinyint(2) DEFAULT '0' COMMENT '状态',
+  `discribe` varchar(1024) DEFAULT NULL, COMMENT '答案描述',
   `owner` int(11) DEFAULT '0'COMMENT '出题人',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

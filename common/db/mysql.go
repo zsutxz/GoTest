@@ -23,15 +23,15 @@ func Close() {
 func InitGorm() error {
 	// "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 	// 对每个分公司数据库进行连接
-	dbNames := conf.HrmsConf.Db.DbName
+	dbNames := conf.GlobalConf.Db.DbName
 	dbNameList := strings.Split(dbNames, ",")
 	for index, dbName := range dbNameList {
 		dsn := fmt.Sprintf(
 			"%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
-			conf.HrmsConf.Db.User,
-			conf.HrmsConf.Db.Password,
-			conf.HrmsConf.Db.Host,
-			conf.HrmsConf.Db.Port,
+			conf.GlobalConf.Db.User,
+			conf.GlobalConf.Db.Password,
+			conf.GlobalConf.Db.Host,
+			conf.GlobalConf.Db.Port,
 			dbName,
 		)
 		db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{

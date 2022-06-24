@@ -31,7 +31,7 @@ func InitGin() error {
 	htmlInit(server)
 	// 初始化路由
 	router.Init(server)
-	err := server.Run(fmt.Sprintf(":%v", conf.HrmsConf.Gin.Port))
+	err := server.Run(fmt.Sprintf(":%v", conf.GlobalConf.Gin.Port))
 	if err != nil {
 		log.Printf("[InitGin] err = %v", err)
 	}
@@ -40,7 +40,7 @@ func InitGin() error {
 }
 
 func InitMongo() error {
-	mongo := conf.HrmsConf.Mongo
+	mongo := conf.GlobalConf.Mongo
 	var err error
 	conf.MongoClient, err = qmgo.NewClient(context.Background(), &qmgo.Config{
 		Uri:      fmt.Sprintf("mongodb://%v:%v", mongo.IP, mongo.Port),

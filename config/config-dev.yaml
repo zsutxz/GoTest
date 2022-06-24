@@ -10,3 +10,8 @@ mongo:
   ip: 127.0.0.1
   port: 27017
   dataset: hrms
+weixin:
+  site: "https://api.weixin.qq.com/sns/jscode2session?"
+  appid: "wx6f9cc63ed9ded89b"
+  secret: "421169661fc3ef99110fe20c75a64ad1"
+  httptail: "&grant_type=authorization_code"

@@ -14,7 +14,7 @@ import (
 )
 
 // 全局配置文件
-var HrmsConf *Config
+var GlobalConf *Config
 
 // 分公司数据库映射表
 var DbMapper = make(map[string]*gorm.DB)
@@ -56,12 +56,20 @@ type Mongo struct {
 	Dataset string `json:"dataset"`
 }
 
+type Weixin struct {
+	Site     string `json:"site"`
+	Appid    string `json:"appid"`
+	Secret   string `json:"secret"`
+	Httptail string `json:"httptail"`
+}
+
 var MongoClient *qmgo.Client
 
 type Config struct {
-	Gin   `json:"gin"`
-	Db    `json:"db"`
-	Mongo `json:"mongo"`
+	Gin    `json:"gin"`
+	Db     `json:"db"`
+	Mongo  `json:"mongo"`
+	Weixin `json:"weixin"`
 }
 
 func InitConfig() error {
@@ -89,6 +97,6 @@ func InitConfig() error {
 		return err
 	}
 	log.Printf("[config.Init] 初始化配置成功,config=%v", config)
-	HrmsConf = config
+	GlobalConf = config
 	return nil
 }

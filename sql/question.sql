@@ -21,3 +21,19 @@ CREATE TABLE `mc_question` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wxuser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(64) DEFAULT NULL,
+  `nickname` varchar(32) DEFAULT NULL,
+  `city` varchar(32) DEFAULT NULL,
+  `province` varchar(32) DEFAULT NULL,
+  `country` varchar(32) DEFAULT NULL,
+  `gender` tinyint(2) DEFAULT '0',
+  `createdate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;

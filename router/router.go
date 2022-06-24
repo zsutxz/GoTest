@@ -121,4 +121,9 @@ func Init(server *gin.Engine) {
 	questionGroup.GET("/search/:id", handler.SearchQuestion)
 	questionGroup.POST("/edit", handler.EditQuestion)
 	questionGroup.DELETE("/delete/:id", handler.DelQuestion)
+
+	// API相关
+	apiGroup := server.Group("/api")
+	// apiGroup.GET("wxlogin", handler.WxHandler.Login)
+	apiGroup.GET("wxRegister", handler.WxHandler.Register)
 }

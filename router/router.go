@@ -61,47 +61,7 @@ func Init(server *gin.Engine) {
 	// 分公司相关
 	companyGroup := server.Group("/company")
 	companyGroup.GET("/query", handler.BranchCompanyQuery)
-	// 薪资相关
-	salaryGroup := server.Group("/salary")
-	salaryGroup.POST("/create", handler.CreateSalary)
-	salaryGroup.DELETE("/delete/:salary_id", handler.DelSalary)
-	salaryGroup.POST("/edit", handler.UpdateSalaryById)
-	salaryGroup.GET("/query/:staff_id", handler.GetSalaryByStaffId)
-	// 薪资发放相关
-	salaryRecordGroup := server.Group("/salary_record")
-	//salaryRecordGroup.POST("/create", handler.CreateSalaryRecord)
-	//salaryRecordGroup.DELETE("/delete/:salary_record_id", handler.DelSalaryRecord)
-	//salaryRecordGroup.POST("/edit", handler.UpdateSalaryRecordById)
-	salaryRecordGroup.GET("/query/:staff_id", handler.GetSalaryRecordByStaffId)
-	salaryRecordGroup.GET("/get_salary_record_is_pay_by_id/:id", handler.GetSalaryRecordIsPayById)
-	salaryRecordGroup.GET("/pay_salary_record_by_id/:id", handler.PaySalaryRecordById)
-	salaryRecordGroup.GET("/query_history/:staff_id", handler.GetHadPaySalaryRecordByStaffId)
-	// 考勤相关
-	attendGroup := server.Group("/attendance_record")
-	attendGroup.POST("/create", handler.CreateAttendRecord)
-	attendGroup.DELETE("/delete/:attendance_id", handler.DelAttendRecordByAttendId)
-	attendGroup.POST("/edit", handler.UpdateAttendRecordById)
-	attendGroup.GET("/query/:staff_id", handler.GetAttendRecordByStaffId)
-	attendGroup.GET("/query_history/:staff_id", handler.GetAttendRecordHistoryByStaffId)
-	attendGroup.GET("/get_attend_record_is_pay/:staff_id/:date", handler.GetAttendRecordIsPayByStaffIdAndDate)
-	attendGroup.GET("/approve/query/:leader_staff_id", handler.GetAttendRecordApproveByLeaderStaffId)
-	attendGroup.GET("/approve_accept/:attendId", handler.ApproveAccept)
-	attendGroup.GET("/approve_reject/:attendId", handler.ApproveReject)
-	// 招聘信息相关
-	recruitmentGroup := server.Group("/recruitment")
-	recruitmentGroup.POST("/create", handler.CreateRecruitment)
-	recruitmentGroup.DELETE("/delete/:recruitment_id", handler.DelRecruitmentByRecruitmentId)
-	recruitmentGroup.POST("/edit", handler.UpdateRecruitmentById)
-	recruitmentGroup.GET("/query/:job_name", handler.GetRecruitmentByJobName)
-	// 候选人管理相关
-	candidateGroup := server.Group("/candidate")
-	candidateGroup.POST("/create", handler.CreateCandidate)
-	candidateGroup.DELETE("/delete/:candidate_id", handler.DelCandidateByCandidateId)
-	candidateGroup.POST("/edit", handler.UpdateCandidateById)
-	candidateGroup.GET("/query_by_name/:name", handler.GetCandidateByName)
-	candidateGroup.GET("/query_by_staff_id/:staff_id", handler.GetCandidateByStaffId)
-	candidateGroup.GET("/reject/:id", handler.SetCandidateRejectById)
-	candidateGroup.GET("/accept/:id", handler.SetCandidateAcceptById)
+
 	// 考试管理相关
 	exampleGroup := server.Group("/example")
 	exampleGroup.POST("/create", handler.CreateExample)
@@ -115,6 +75,7 @@ func Init(server *gin.Engine) {
 	exampleScoreGroup.POST("/create", handler.CreateExampleScore)
 	exampleScoreGroup.GET("/query_by_name/:name", handler.GetExampleHistoryByName)
 	exampleScoreGroup.GET("/query_by_staff_id/:staff_id", handler.GetExampleHistoryByStafId)
+
 	// 题目管理相关
 	questionGroup := server.Group("/question")
 	questionGroup.POST("/create", handler.AddQuestion)

@@ -22,78 +22,6 @@
           "target": "_self"
         },
         {
-          "title": "通知管理",
-          "href": "/authority_render/normal_notification_manage",
-          "icon": "fa fa-home",
-          "target": "_self"
-        },
-        {
-          "title": "考勤管理",
-          "href": "",
-          "icon": "fa fa-window-maximize",
-          "target": "_self",
-          "child": [
-            {
-              "title": "考勤上报",
-              "href": "/authority_render/normal_attendance_giving_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "考勤历史",
-              "href": "/authority_render/normal_attendance_history_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "考勤审批",
-              "href": "/authority_render/attendance_approve_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "薪酬管理",
-          "href": "",
-          "icon": "fa fa-home",
-          "target": "_self",
-          "child": [
-            {
-              "title": "工资套账",
-              "href": "/authority_render/normal_salary_detail_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "工资历史",
-              "href": "/authority_render/normal_salary_history_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "招聘管理",
-          "href": "",
-          "icon": "fa fa-window-maximize",
-          "target": "_self",
-          "child": [
-            {
-              "title": "信息管理",
-              "href": "/authority_render/normal_recruitment_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "候选人管理",
-              "href": "/authority_render/normal_candidate_manage",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            }
-          ]
-        },
-        {
           "title": "考试管理",
           "href": "",
           "icon": "fa fa-gears",
@@ -108,6 +36,32 @@
             {
               "title": "考试历史",
               "href": "/authority_render/normal_example_history",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "题库管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "添加题目",
+              "href": "views/question_add.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "查询题目",
+              "href": "authority_render/question_manage",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "修改题目",
+              "href": "views/question_edit.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }

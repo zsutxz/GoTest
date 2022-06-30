@@ -1,5 +1,5 @@
 gin:
-  port: 8880
+  port: 8888
 db:
   user: root
   password: 123456

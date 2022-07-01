@@ -2,8 +2,8 @@ package service
 
 import (
 	"errors"
-	conf "hrms/common/config"
-	"hrms/model"
+	conf "ims/common/config"
+	"ims/model"
 	"log"
 
 	"github.com/gin-gonic/gin"

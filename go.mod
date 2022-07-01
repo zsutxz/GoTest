@@ -1,4 +1,4 @@
-module hrms
+module ims
 
 go 1.13
 

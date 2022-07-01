@@ -1,8 +1,8 @@
 package service
 
 import (
-	conf "hrms/common/config"
-	"hrms/model"
+	conf "ims/common/config"
+	"ims/model"
 	"log"
 
 	"gorm.io/gorm"

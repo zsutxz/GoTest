@@ -1,9 +1,9 @@
 package router
 
 import (
-	"hrms/handler"
-	accounthandler "hrms/handler/account"
-	staffhandler "hrms/handler/staff"
+	"ims/handler"
+	accounthandler "ims/handler/account"
+	staffhandler "ims/handler/staff"
 
 	"github.com/gin-gonic/gin"
 )

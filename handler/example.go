@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"hrms/model"
-	"hrms/service"
+	"ims/model"
+	"ims/service"
 	"log"
 	"net/http"
 	"strconv"

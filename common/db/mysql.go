@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	conf "hrms/common/config"
+	conf "ims/common/config"
 	"log"
 	"strings"
 

@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	conf "hrms/common/config"
-	"hrms/common/db"
-	"hrms/router"
+	conf "ims/common/config"
+	"ims/common/db"
+	"ims/router"
 	"log"
 	"net/http"
 

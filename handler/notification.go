@@ -1,10 +1,11 @@
 package handler
 
 import (
-	"github.com/gin-gonic/gin"
-	"hrms/model"
-	"hrms/service"
+	"ims/model"
+	"ims/service"
 	"log"
+
+	"github.com/gin-gonic/gin"
 )
 
 func CreateNotification(c *gin.Context) {

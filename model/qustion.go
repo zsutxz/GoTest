@@ -15,6 +15,7 @@ type Mc_Question struct {
 	Kind     int8   `json:"kind,string" gormobilem:"not null;default:'';comment:类型"`
 	Dif      int8   `json:"dif,string" gormobilem:"not null;default:'';comment:"`
 	Stat     int8   `json:"stat,string" gormobilem:"not null;default:'';comment:状态"`
+	Describe string `json:"describe" gorm:"size:256;not null;index;comment:答案描述"`
 	Owner    int16  `json:"owner" gormobilem:"not null;default:'';comment:"`
 	Timestamps
 	SoftDeletes

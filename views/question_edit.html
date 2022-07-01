@@ -136,7 +136,7 @@
             // alert(JSON.stringify(req))
             // alert(localStorage.getItem("dep_edit_info"))
             req.id = JSON.parse(editInfo).id
-            alert(JSON.stringify(req))
+            //alert(JSON.stringify(req))
             $.ajax({
                 type: "POST",
                 url: "/question/edit",
@@ -164,11 +164,10 @@
     });
 
     function recallData(editInfo) {
-        alert(editInfo)
+        //alert(editInfo)
         var $ = layui.$
         editInfo = JSON.parse(editInfo)
         $("textarea[name=quest]").val(editInfo.quest)
-        // layui.form.render("select")
         $("textarea[name=choicea]").val(editInfo.choicea)
         $("textarea[name=choiceb]").val(editInfo.choiceb)
         $("textarea[name=choicec]").val(editInfo.choicec)
@@ -187,6 +186,8 @@
 
         $('#stat').val(editInfo.stat)
         layui.form.render("select");
+
+        $("textarea[name=describe]").val(editInfo.describe)
 
     }
 </script>

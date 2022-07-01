@@ -78,19 +78,15 @@
                 cols: [[
                     // {type: "checkbox", width: 50},
                     {field: 'id',width: 60, title: '序号', sort: true, type:'numbers'},
-                    {field: 'quest', width: 280, title: '题目'},
-                    {field: 'choicea', width: 180, title: '选线A'},
-                    {field: 'choiceb', width: 180, title: '选线B'},
-                    {field: 'choicec', width: 180, title: '选线C'},
-                    {field: 'choiced', width: 180, title: '选线D'},
+                    {field: 'quest', width: 250, title: '题目'},
+                    {field: 'choicea', width: 120, title: '选线A'},
+                    {field: 'choiceb', width: 120, title: '选线B'},
+                    {field: 'choicec', width: 120, title: '选线C'},
+                    {field: 'choiced', width: 120, title: '选线D'},
                     {field: 'answer', width: 60, title: '答案'},
                     {field: 'score', width: 60, title: '分数'},
-                    {field: 'kind', width: 60, title: '种类'},
-                    {field: 'grade', width: 60, title: '等级'},
-                    {field: 'dif', width: 60, title: '难度'},
-                    {field: 'stat', width: 60, title: '开启'},
                     {field: 'created_at', width: 180, title: '添加时间'},
-                    {title: '操作', minWidth: 200, toolbar: '#currentTableBar', align: "center", fixed: 'right'}
+                    {title: '操作', minWidth: 180, toolbar: '#currentTableBar', align: "center", fixed: 'right'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
                 limit: 10,
@@ -112,13 +108,10 @@
             });
 
             table.on('tool(currentTableFilter)', function (obj) {
-
-                // var depName = obj.data.dep_name;
-                // var needEditDepInfo = {"dep_id":depId, "pre_dep_id": preDepId,"dep_name":depName}
                 if (obj.event === 'edit') {
                     // 本地缓存需要编辑的信息
-                    localStorage.setItem("staff_edit_info", JSON.stringify(obj.data))
-                    // alert("待编辑：" + localStorage.getItem("staff_edit_info"))
+                    localStorage.setItem("question_query_info", JSON.stringify(obj.data))
+                    //alert("待编辑：" + localStorage.getItem("staff_edit_info"))
                     var index = layer.open({
                         title: '编辑题目信息',
                         type: 2,

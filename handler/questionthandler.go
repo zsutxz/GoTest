@@ -68,6 +68,7 @@ func SearchQuestion(c *gin.Context) {
 			"total":  total,
 			"msg":    qustions,
 		})
+		// log.Printf("question: %v", qustions)
 		return
 	}
 
@@ -76,6 +77,7 @@ func SearchQuestion(c *gin.Context) {
 		// 不存在
 		code = 2001
 	}
+	// log.Printf("question: %v", qustions)
 	total = int64(len(qustions))
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,

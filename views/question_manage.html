@@ -29,6 +29,15 @@
                 </form>
             </div>
         </fieldset>
+        
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                {{ if .create }}
+                <button id="add_button" class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
+                {{ else }}
+                {{ end }}
+            </div>
+        </script>
 
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
@@ -104,6 +113,34 @@
                         "count": res.total, //解析数据长度
                         "data": res.msg //解析数据列表
                     };
+                }
+            });
+
+              /**
+             * toolbar监听事件
+             */
+             table.on('toolbar(currentTableFilter)', function (obj) {
+                if (obj.event === 'add') {  // 监听添加操作
+                    var index = layer.open({
+                        title: '添加题目',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin:true,
+                        shadeClose: true,
+                        area: ['80%', '80%'],
+                        content: '/views/question_add.html',
+                        end: function(){
+                            //执行搜索重载
+                            table.reload('currentTableId', {
+                                page: {
+                                    curr: 1
+                                }
+                            }, 'data');
+                        }
+                    });
+                    $(window).on("resize", function () {
+                        layer.full(index);
+                    });
                 }
             });
 

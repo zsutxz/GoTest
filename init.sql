@@ -1,9 +1,9 @@
 -- create the databases
 CREATE DATABASE IF NOT EXISTS bubble;
 
-create database hrms_C001;
+create database imdb;
 
-use hrms_C001;
+use imdb;
 
 CREATE TABLE `attendance_record` (
                                      `id` bigint NOT NULL AUTO_INCREMENT,
@@ -14,7 +14,7 @@ CREATE TABLE `attendance_record` (
                                      `work_days` int NOT NULL COMMENT '出勤天数',
                                      `leave_days` int NOT NULL COMMENT '请假天数',
                                      `overtime_days` int NOT NULL COMMENT '加班天数',
-                                     `approve` int NOT NULL COMMENT '是否已审批, 0为未审批，1为审批通过，2为审批不通过',utf8mb4_general_ci
+                                     `approve` int NOT NULL COMMENT '是否已审批, 0为未审批，1为审批通过，2为审批不通过',
                                      `created_at` datetime DEFAULT NULL,
                                      `updated_at` datetime DEFAULT NULL,
                                      `deleted_at` datetime DEFAULT NULL,

@@ -5,7 +5,7 @@ db:
   password: root1234
   host: mysql8019
   port: 3306
-  dbName: hrms_C001,hrms_C002
+  dbName: imdb
 mongo:
   ip: 127.0.0.1
   port: 27017

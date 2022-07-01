@@ -1,6 +1,6 @@
-create database hrms_C001;
+create database imdb;
 
-use hrms_C001;
+use imdb;
 
 CREATE TABLE `attendance_record` (
                                      `id` bigint NOT NULL AUTO_INCREMENT,

@@ -52,9 +52,9 @@ func InitGorm() error {
 		if index == 0 {
 			conf.DefaultDb = db
 		}
-		log.Printf("[InitGorm] 分公司数据库%v注册成功", dbName)
+		log.Printf("[InitGorm] 数据库%v注册成功", dbName)
 	}
-	//fmt.Println(conf.DbMapper["hrms_C001"])
+	//fmt.Println(conf.DbMapper["imdb"])
 	log.Printf("[InitGorm] success")
 	return nil
 }

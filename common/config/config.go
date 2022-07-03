@@ -54,6 +54,10 @@ type Mongo struct {
 	Dataset string `json:"dataset"`
 }
 
+type File struct {
+	UpDir string `json:"updir"`
+}
+
 type Weixin struct {
 	Site     string `json:"site"`
 	Appid    string `json:"appid"`
@@ -67,6 +71,7 @@ type Config struct {
 	Gin    `json:"gin"`
 	Db     `json:"db"`
 	Mongo  `json:"mongo"`
+	File   `json:"files"`
 	Weixin `json:"weixin"`
 }
 

@@ -111,7 +111,12 @@
             </select>
         </div>
     </div>
-
+    <div class="layui-form-item" >
+        <label class="layui-form-label required">上传试题</label>
+        <button type="button" class="layui-btn" id="question_pic">
+            <i class="layui-icon" >&#xe67c;</i>选择
+        </button>
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">添 加</button>
@@ -127,24 +132,25 @@
             $ = layui.$;
 
         upload.render({
-            elem: '#example_excel' //绑定元素
-            ,url: '/example/parse_example_content' //上传接口
-            ,accept: 'file',
-            exts:'xlsx',
-            field:'example_excel',
-            done: function(resp, index, upload){
+            elem: '#question_pic' //绑定元素
+            ,url: '/example/uploadimg' //上传接口
+            ,accept: 'images|file',
+            exts:'png|jpg',
+            field:'question_pic',
+            done: function(data, index, upload){
                 //上传完毕回调
+                var resp = JSON.parse(JSON.stringify(data));
                 if (resp.status == 2000) {
                     layer.msg("上传成功")
-                    $("#is").val("已上传试题")
-                    $("#content").val(resp.msg)
+                    //$("#is").val("已上传试题")
+                    //$("#content").val(resp.msg)
                 } else {
                     layer.msg(resp.msg)
                 }
-            }
-            ,error: function(){
+            },
+            error: function(){
                 //请求异常回调
-                layer.msg("只可以上传xlsx格式的表格")
+                layer.msg("只可以上传png or jpg格式的表格")
             }
         });
 

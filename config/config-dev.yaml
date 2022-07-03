@@ -10,6 +10,8 @@ mongo:
   ip: 127.0.0.1
   port: 27017
   dataset: ims
+file:
+  updir: "UploadFiles"
 weixin:
   site: "https://api.weixin.qq.com/sns/jscode2session?"
   appid: "wx6f9cc63ed9ded89b"

@@ -1,11 +1,13 @@
 package handler
 
 import (
+	"fmt"
 	conf "ims/common/config"
 	"ims/model"
 	"ims/service"
 	"log"
 	"net/http"
+	"path"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -35,6 +37,26 @@ func AddQuestion(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"status": 2000,
 	})
+}
+
+//图片上传
+func UploadImage(c *gin.Context) {
+	file, err := c.FormFile("question_pic")
+	if err != nil {
+		//errLog.Error(logrus.Fields{"err": err.Error(), "source": pkg.GetPath()}, "controller - admin - upload")
+		c.JSON(http.StatusOK, fmt.Sprintf("'%s' uploaded", file.Filename))
+		return
+	}
+
+	filepath := path.Join("./"+conf.GlobalConf.File.UpDir+"/", file.Filename)
+	fmt.Printf("filepath:%+v\n", filepath)
+	err = c.SaveUploadedFile(file, filepath)
+	if err != nil {
+		//errLog.Error(logrus.Fields{"err": err.Error(), "source": pkg.GetPath()}, "controller - admin - upload - SaveUploadedFile")
+		c.JSON(http.StatusOK, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"uploading": "done", "message": "success", "url": "http://" + c.Request.Host + conf.GlobalConf.File.UpDir + "/" + file.Filename})
 }
 
 func SearchQuestion(c *gin.Context) {

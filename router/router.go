@@ -63,6 +63,7 @@ func Init(server *gin.Engine) {
 	questionGroup.GET("/search/:id", handler.SearchQuestion)
 	questionGroup.POST("/edit", handler.EditQuestion)
 	questionGroup.DELETE("/delete/:id", handler.DelQuestion)
+	exampleGroup.POST("/uploadimg", handler.UploadImage)
 
 	// API相关
 	apiGroup := server.Group("/api")

@@ -1,11 +1,9 @@
 package conf
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/qiniu/qmgo"
@@ -33,8 +31,8 @@ func HrmsDB(c *gin.Context) *gorm.DB {
 		c.HTML(http.StatusOK, "login.html", nil)
 		return nil
 	}
-	branchId := strings.Split(cookie, "_")[2]
-	dbName := fmt.Sprintf("hrms_%v", branchId)
+	// branchId := strings.Split(cookie, "_")[2]
+	dbName := GlobalConf.DbName //fmt.Sprintf("hrms_%v", branchId)
 	if db, ok := DbMapper[dbName]; ok {
 		return db
 	}
@@ -56,6 +54,10 @@ type Mongo struct {
 	Dataset string `json:"dataset"`
 }
 
+type File struct {
+	UpDir string `json:"updir"`
+}
+
 type Weixin struct {
 	Site     string `json:"site"`
 	Appid    string `json:"appid"`
@@ -69,6 +71,7 @@ type Config struct {
 	Gin    `json:"gin"`
 	Db     `json:"db"`
 	Mongo  `json:"mongo"`
+	File   `json:"files"`
 	Weixin `json:"weixin"`
 }
 

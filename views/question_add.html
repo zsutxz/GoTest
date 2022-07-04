@@ -90,7 +90,6 @@
         <div class="layui-input-block">
             <select id="quest_score" name="score" lay-verify="required">
                 <option value="1">1</option>
-                <option value="1.5">1.5</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="5">5</option>
@@ -100,19 +99,26 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">答案说明</label>
         <div class="layui-input-block">
-            <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
+            <textarea style="width: 500px;height: 80px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
         </div>
+        <label class="layui-form-label required">上传解题附件</label>
+        <button type="button" class="layui-btn" id="question_pic">
+            <i class="layui-icon" >&#xe67c;</i>选择
+        </button>
+        <img class="layui-upload-img" style="margin-left: 30px; width: 200px; height: 80px"  id="demo">
     </div>
+    <!-- <div class="layui-form-item" >
+
+    </div> -->
     <div class="layui-form-item">
         <label class="layui-form-label required">状态</label>
         <div class="layui-input-block">
-            <select id="quest_score" name="quest_score" lay-verify="required">
+            <select id="quest_state" name="state" lay-verify="required">
                 <option value="1">开启</option>
                 <option value="0">关闭</option>
             </select>
         </div>
     </div>
-
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">添 加</button>
@@ -126,32 +132,42 @@
             layer = layui.layer,
             upload = layui.upload,
             $ = layui.$;
-
+            
         upload.render({
-            elem: '#example_excel' //绑定元素
-            ,url: '/example/parse_example_content' //上传接口
-            ,accept: 'file',
-            exts:'xlsx',
-            field:'example_excel',
+            elem: '#question_pic' //绑定元素
+            ,url: '/example/uploadimg' //上传接口
+            ,accept: 'images|file',
+            exts:'png|jpg',
+            field:'question_pic',
+            bindAction: '#upload_img', //上传绑定到隐藏按钮
+            before: function(obj){
+                //预读本地文件示例，不支持ie8
+                console.log(obj);
+                obj.preview(function(index, file, result){
+                    $('#demo').attr('src', result); //图片链接（base64）
+    
+                });
+            },
             done: function(resp, index, upload){
                 //上传完毕回调
-                if (resp.status == 2000) {
+                //layer.msg(resp.status,resp.msg)
+                if (resp.message == "success") {
                     layer.msg("上传成功")
-                    $("#is").val("已上传试题")
-                    $("#content").val(resp.msg)
+                    //$("#is").val("已上传试题")
+                    //$("#content").val(resp.msg)
                 } else {
-                    layer.msg(resp.msg)
+                    layer.msg(resp.message)
                 }
-            }
-            ,error: function(){
+            },
+            error: function(){
                 //请求异常回调
-                layer.msg("只可以上传xlsx格式的表格")
+                layer.msg("只可以上传png or jpg格式的表格")
             }
         });
 
         //监听提交
         form.on('submit(saveBtn)', function (req) {
-            console.log("error resp:" + JSON.stringify(req.field))
+            //alert("commit data:" + JSON.stringify(req.field))
             $.ajax({
                 type: "POST",
                 url: "/question/create",

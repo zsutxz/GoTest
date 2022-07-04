@@ -2,8 +2,8 @@ package service
 
 import (
 	"errors"
-	conf "hrms/common/config"
-	"hrms/model"
+	conf "ims/common/config"
+	"ims/model"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +17,7 @@ var QuestService = new(questService)
 // Add 添加
 func (mcquestServ *questService) Add(c *gin.Context, params model.Mc_Question) (err error) {
 	var question = model.Mc_Question{Question: params.Question, ChoiceA: params.ChoiceA, ChoiceB: params.ChoiceB, ChoiceC: params.ChoiceC,
-		ChoiceD: params.ChoiceD, Answer: params.Answer, Kind: params.Kind, Score: params.Score, Dif: params.Dif, Stat: params.Stat, Owner: 10001}
+		ChoiceD: params.ChoiceD, Answer: params.Answer, Kind: params.Kind, Score: params.Score, Dif: params.Dif, Stat: params.Stat, Describe: params.Describe, Owner: 10001}
 
 	if err := conf.HrmsDB(c).Create(&question).Error; err != nil {
 		log.Printf("questService Add err = %v", err)

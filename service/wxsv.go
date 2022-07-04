@@ -1,8 +1,8 @@
 package service
 
 import (
-	conf "hrms/common/config"
-	"hrms/model"
+	conf "ims/common/config"
+	"ims/model"
 	"log"
 
 	"gorm.io/gorm"
@@ -20,8 +20,8 @@ func (s *wxService) Login(id string) (wxuser model.WxUser, err error) {
 	var hrmsDB *gorm.DB
 	var ok bool
 	dbName := conf.GlobalConf.DbName
-	if hrmsDB, ok = conf.DbMapper["hrms_C001"]; !ok {
-		log.Printf("[Login err, 无法获取到该分公司db名称, name = %v]", dbName)
+	if hrmsDB, ok = conf.DbMapper["imdb"]; !ok {
+		log.Printf("[Login err, 无法获取到db, name = %v]", dbName)
 
 		return
 	}
@@ -38,7 +38,7 @@ func (s *wxService) Register(wxuser model.WxUser) (err error) {
 	var ok bool
 	dbName := conf.GlobalConf.DbName
 	if hrmsDB, ok = conf.DbMapper[dbName]; !ok {
-		log.Printf("[Login err, 无法获取到该分公司db名称, name = %v]", dbName)
+		log.Printf("[Login err, 无法获取db名称, name = %v]", dbName)
 
 		return nil
 	}

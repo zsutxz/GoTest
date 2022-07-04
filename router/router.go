@@ -1,9 +1,9 @@
 package router
 
 import (
-	"hrms/handler"
-	accounthandler "hrms/handler/account"
-	staffhandler "hrms/handler/staff"
+	"ims/handler"
+	accounthandler "ims/handler/account"
+	staffhandler "ims/handler/staff"
 
 	"github.com/gin-gonic/gin"
 )
@@ -63,6 +63,7 @@ func Init(server *gin.Engine) {
 	questionGroup.GET("/search/:id", handler.SearchQuestion)
 	questionGroup.POST("/edit", handler.EditQuestion)
 	questionGroup.DELETE("/delete/:id", handler.DelQuestion)
+	exampleGroup.POST("/uploadimg", handler.UploadImage)
 
 	// API相关
 	apiGroup := server.Group("/api")

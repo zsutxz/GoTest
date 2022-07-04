@@ -92,7 +92,6 @@
         <div class="layui-input-block">
             <select id="quest_score" name="score" lay-verify="required">
                 <option value="1">1</option>
-                <option value="1.5">1.5</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="5">5</option>
@@ -164,11 +163,10 @@
     });
 
     function recallData(editInfo) {
-        // alert(editInfo)
+        //alert(editInfo)
         var $ = layui.$
         editInfo = JSON.parse(editInfo)
         $("textarea[name=quest]").val(editInfo.quest)
-        // layui.form.render("select")
         $("textarea[name=choicea]").val(editInfo.choicea)
         $("textarea[name=choiceb]").val(editInfo.choiceb)
         $("textarea[name=choicec]").val(editInfo.choicec)
@@ -187,6 +185,8 @@
 
         $('#stat').val(editInfo.stat)
         layui.form.render("select");
+
+        $("textarea[name=describe]").val(editInfo.describe)
 
     }
 </script>

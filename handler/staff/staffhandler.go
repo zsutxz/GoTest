@@ -2,9 +2,9 @@ package staffhandler
 
 import (
 	"fmt"
-	conf "hrms/common/config"
-	"hrms/model"
-	"hrms/service"
+	conf "ims/common/config"
+	"ims/model"
+	"ims/service"
 	"log"
 	"net/http"
 

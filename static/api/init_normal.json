@@ -58,12 +58,6 @@
               "href": "authority_render/question_manage",
               "icon": "fa fa-tachometer",
               "target": "_self"
-            },
-            {
-              "title": "修改题目",
-              "href": "views/question_edit.html",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
             }
           ]
         }

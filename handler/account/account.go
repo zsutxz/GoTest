@@ -3,9 +3,9 @@ package accounthandler
 import (
 	"encoding/base64"
 	"fmt"
-	conf "hrms/common/config"
-	"hrms/model"
-	"hrms/service"
+	conf "ims/common/config"
+	"ims/model"
+	"ims/service"
 	"log"
 	"net/http"
 	"strings"
@@ -34,7 +34,7 @@ func Index(c *gin.Context) {
 	userName := user[3]
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		//"title":     fmt.Sprintf("欢迎%v:%v登陆HRMS", userType, userNo),
-		"title":      fmt.Sprintf("人力资源管理系统"),
+		"title":      fmt.Sprintf("题库管理系统"),
 		"user_type":  userType,
 		"staff_id":   userNo,
 		"staff_name": base64Decode(userName),
@@ -86,19 +86,19 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
-	dbName := fmt.Sprintf("hrms_%v", loginR.BranchId)
+	dbName := conf.GlobalConf.DbName //fmt.Sprintf("hrms_%v", loginR.BranchId)
 	log.Printf("[login db name = %v]", dbName)
 	var hrmsDB *gorm.DB
 	var ok bool
 	if hrmsDB, ok = conf.DbMapper[dbName]; !ok {
-		log.Printf("[Login err, 无法获取到该分公司db名称, name = %v]", dbName)
+		log.Printf("[Login err, 无法获取db名称, name = %v]", dbName)
 		c.JSON(200, gin.H{
 			"status": 5000,
-			"result": fmt.Sprintf("[Login err, 无法获取到该分公司db名称, name = %v]", dbName),
+			"result": fmt.Sprintf("[Login err, 无法获取db名称, name = %v]", dbName),
 		})
 		return
 	}
-	log.Printf("[handler.Login] login R = %v", loginR)
+	// log.Printf("[handler.Login] login R = %v", loginR)
 	var loginDb model.Authority
 	var staff model.Staff
 	hrmsDB.Where("staff_id = ? and user_password = ?",

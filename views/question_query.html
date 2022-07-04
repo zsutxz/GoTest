@@ -102,7 +102,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">答案说明</label>
         <div class="layui-input-block">
-            <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
+            <textarea style="height: 10px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
@@ -118,53 +118,6 @@
 </div>
 <script src="/static/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    function loadStaffSelect(staffId) {
-        $ = layui.$
-        $.ajax({
-            type: "GET",
-            url: "/staff/query/all",
-            success:function (data) {
-                var resp = JSON.parse(JSON.stringify(data));
-                $.each(resp.msg, function (index, item) {
-                    $('#staff_select').append(new Option(item.staff_name+"-"+item.dep_name+"-"+item.rank_name, item.staff_id));// 下拉菜单里添加元素
-                });
-                $('#staff_select').val(staffId)
-                layui.form.render("select");
-            }});
-    }
-
-    function loadRankSelect(rankId) {
-        $ = layui.$
-        $.ajax({
-            type: "GET",
-            url: "/rank/query/all",
-            success:function (data) {
-                var resp = JSON.parse(JSON.stringify(data));
-                $.each(resp.msg, function (index, item) {
-                    $('#rank_select').append(new Option(item.rank_name, item.rank_id));// 下拉菜单里添加元素
-                });
-                // 选中所属职位
-                $('#rank_select').val(rankId)
-                layui.form.render("select");
-            }});
-    }
-
-    function loadDepSelect(depId) {
-        $ = layui.$
-        $.ajax({
-            type: "GET",
-            url: "/depart/query/all",
-            success:function (data) {
-                var resp = JSON.parse(JSON.stringify(data));
-                $.each(resp.msg, function (index, item) {
-                    $('#dep_select').append(new Option(item.dep_name, item.dep_id));// 下拉菜单里添加元素
-                });
-                $('#dep_select').val(depId)
-                layui.form.render("select");
-            }});
-    }
-
-
     layui.use(['form'], function () {
         var form = layui.form,
             layer = layui.layer,
@@ -208,7 +161,7 @@
     });
 
     function recallData(editInfo) {
-        // alert(editInfo)
+        // alert("question query recalldata:"+editInfo)
         var $ = layui.$
         editInfo = JSON.parse(editInfo)
         $("textarea[name=quest]").val(editInfo.quest)

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>题目查询</title>
+        <title>题目管理</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -125,7 +125,7 @@
                         shade: 0.2,
                         maxmin:true,
                         shadeClose: true,
-                        area: ['80%', '80%'],
+                        area: ['90%', '90%'],
                         content: '/views/question_edit.html',
                         end: function(){
                             //执行搜索重载
@@ -194,6 +194,23 @@
                     });
                     return false;
                 }
+            });
+            // 监听搜索操作
+            form.on('submit(data-search-btn)', function (data) {
+                layer.msg("搜索成功");
+                var quest_id = data.field.question_id;
+                var reqUrl = "/question/search/" + quest_id
+                if (typeof quest_id == "undefined" || quest_id == null || quest_id == "") {
+                    reqUrl = "/question/search/all"
+                }
+                //执行搜索重载
+                table.reload('currentTableId', {
+                    url: reqUrl,
+                    page: {
+                        curr: 1
+                    }
+                }, 'data');
+                return false;
             });
 
         });

@@ -46,7 +46,7 @@
             <textarea style="height: 30px" type="text" name="choiced" lay-verify="required" placeholder="请输入选项" value="" class="layui-input"></textarea>
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="height: 20px">
         <label class="layui-form-label required">答案</label>
         <div class="layui-input-block">
             <select id="quest_answer" name="answer" lay-verify="required">
@@ -57,7 +57,7 @@
             </select>
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="height: 20px">
         <label class="layui-form-label">分类</label>
         <div class="layui-input-block">
             <select  id="quest_kind" name="kind" lay-verify="required">
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="height: 20px">
         <label class="layui-form-label required">题目难度</label>
         <div class="layui-input-block">
             <select id="quest_dif" name="dif" lay-verify="required">
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <div class="layui-form-item"  style="height: 20px">
         <label class="layui-form-label required">分数</label>
         <div class="layui-input-block">
             <select id="quest_score" name="score" lay-verify="required">
@@ -99,13 +99,13 @@
             </select>
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" >
         <label class="layui-form-label required">答案说明</label>
         <div class="layui-input-block">
             <textarea style="height: 100px" type="text" name="describe" lay-verify="required" placeholder="请输入解答说明" value="" class="layui-input"></textarea>
         </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item"  style="height: 20px">
         <label class="layui-form-label required">状态</label>
         <div class="layui-input-block">
             <select id="quest_stat" name="stat" lay-verify="required">
@@ -164,7 +164,7 @@
     });
 
     function recallData(editInfo) {
-        alert(editInfo)
+        // alert(editInfo)
         var $ = layui.$
         editInfo = JSON.parse(editInfo)
         $("textarea[name=quest]").val(editInfo.quest)
